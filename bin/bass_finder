@@ -2,3 +2,6 @@
 
 require_relative "../lib/bass_finder"
 
+BassFinder::CLI.new.hello
+BassFinder::Guitar.new.hello
+BassFinder::Scraper.new.hello

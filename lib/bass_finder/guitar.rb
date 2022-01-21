@@ -1,7 +1,7 @@
 class BassFinder::Guitar
 
-    def test
-        puts "Hello"
+    def hello
+        puts "Hello guitar"
     end
 
 end
