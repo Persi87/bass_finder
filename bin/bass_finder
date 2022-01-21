@@ -1,3 +1,4 @@
 #!/usr/bin/env ruby
 
-puts "Hello Simon"
+require_relative "../lib/bass_finder"
+
