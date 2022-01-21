@@ -35,6 +35,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "pry"
   spec.add_dependency "nokogiri"
+  spec.add_dependency 'open-uri'
 
   # Uncomment to register a new dependency of your gem
   # spec.add_dependency "example-gem", "~> 1.0"

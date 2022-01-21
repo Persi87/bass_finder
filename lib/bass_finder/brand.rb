@@ -1,6 +1,6 @@
 class BassFinder::Brand
 
     
-
+    
 
 end
