@@ -1,0 +1,5 @@
+class BassFinder::Scraper
+
+
+
+end
