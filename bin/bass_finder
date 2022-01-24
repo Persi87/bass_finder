@@ -3,4 +3,3 @@
 require_relative "../lib/bass_finder"
 
 BassFinder::CLI.new.call
-BassFinder::CLI.new.list_brands

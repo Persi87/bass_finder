@@ -2,17 +2,12 @@ class BassFinder::CLI
 
     def call
         puts "\n ---> Welcome to the Bass Finder app <---\n\n"
-        #create brands Y
-        #list brands 
-        #get users brand
+        #create brands
+        list_brands 
+        get_user_brand
         #list guitars 
-        #get users guitar
+        #get user guitar
         #list guitar specs
-    end
-
-    def valid_input(input, data)
-        input > 0 && input <= data.length #user input is more than 0 and less than the length of the scraped array
-        binding.pry
     end
 
     def list_brands
@@ -26,7 +21,15 @@ class BassFinder::CLI
         puts "\n"
     end
 
-    
+    def get_user_brand
+        user_input = gets.strip
+        binding.pry
+        # list_guitars if valid_input?(user_input, @final_brand_list)
+    end
+
+    def valid_input?(user_input, data)
+        user_input.to_i > 0 && user_input.to_i <= data.length #user_input is more than 0 and less than the length of the scraped array
+    end
 
 
 end
