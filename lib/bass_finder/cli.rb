@@ -22,13 +22,18 @@ class BassFinder::CLI
     end
 
     def get_user_brand
-        user_input = gets.strip
+        chosen_brand = gets.strip
         binding.pry
-        # list_guitars if valid_input?(user_input, @final_brand_list)
+        show_guitars(chosen_brand) if valid_input?(chosen_brand, @final_brand_list)
     end
 
-    def valid_input?(user_input, data)
-        user_input.to_i > 0 && user_input.to_i <= data.length #user_input is more than 0 and less than the length of the scraped array
+    def valid_input?(chosen_brand, data)                            #this is helper method for #get_user_brand
+        chosen_brand.to_i > 0 && chosen_brand.to_i <= data.length #user_input is more than 0 and less than the length of the scraped array
+    end
+
+    def show_guitars(chosen_brand)
+        user_brand = @final_brand_list[chosen_brand]    # this is a helper method for get #get_user_brand
+        puts "Here are all products by #{user_brand}!"
     end
 
 
