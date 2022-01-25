@@ -3,7 +3,7 @@
 require_relative "bass_finder/version"
 require_relative "./bass_finder/cli"
 require_relative "./bass_finder/scraper"
-require_relative "./bass_finder/guitar"
+require_relative "./bass_finder/model"
 require_relative "./bass_finder/brand"
 
 require 'pry'

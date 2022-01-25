@@ -1,5 +1,0 @@
-class BassFinder::Guitar
-
-    
-
-end
