@@ -13,14 +13,10 @@ class BassFinder::Scraper
             brand_list << bass_brand
         end   
 
-        brand_list
+        brand_list # brand_list contains all 90 brands inc duplicates
+
         #   doc.css(".ident.grid a").attribute("href").value # this is for the individual guitar hopefully
 
-        # final_brand_list = brand_list.uniq.sort {|a, b| a <=> b}
-        
-        # final_brand_list.each_with_index do |brand, index|
-        #     puts "#{index + 1}. #{brand}"
-        # end
           
     end
 

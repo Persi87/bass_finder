@@ -3,6 +3,7 @@ class BassFinder::CLI
     def call
         puts "\n ---> Welcome to the Bass Finder app <---\n\n"
         #create brands
+        get_brands
         list_brands 
         get_user_brand
         #list guitars 
@@ -11,15 +12,15 @@ class BassFinder::CLI
     end
 
     def get_brands
+        @brand_list = BassFinder::Brand.all
         
+        #BassFinder::Scraper.scrape_brands.uniq.sort # put scrape in different method
     end
 
     def list_brands
         puts "Please choose a brand from the list:\n\n"
-        
-        @final_brand_list = BassFinder::Scraper.scrape_brands.uniq.sort {|a, b| a <=> b} # put scrape in different method
-        
-        @final_brand_list.each.with_index(1) do |brand, index|
+                
+        @brand_list.each.with_index(1) do |brand, index|
             puts "#{index}. #{brand}"
         end
         puts "\n"
