@@ -1,12 +1,12 @@
 class BassFinder::Brand
 
-        attr_accessor :name, :model
+        attr_accessor :name, :models
 
-        @@all = [1, 2, 3]
+        @@all = []
     
-    def initialize(name, model)
+    def initialize(name, models)
         @name = name
-        @model = model
+        @models = []
         save
     end
 
