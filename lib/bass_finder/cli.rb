@@ -2,36 +2,30 @@ class BassFinder::CLI
 
     def call
         puts "\n ---> Welcome to the Bass Finder app <---\n\n"
-        #create brands
         get_and_create_brands
-        list_brands 
+        # list_brands
         # get_user_brand
-        #list guitars 
-        #get user guitar
+        
         #list guitar specs
     end
 
     def get_and_create_brands
         
-       @brand_list = BassFinder::Scraper.scrape_brands.uniq 
+       BassFinder::Scraper.scrape_product_tabs
 
-       @brand_list.each do |brand|
-        BassFinder::Brand.new(brand, models)
-       end
-binding.pry
     end
 
     def list_brands
-        puts "Please choose a brand from the list:\n\n"
+        puts "Please choose a brand from the list, 1 - #{@brand_list.length}:\n\n"
                 
         @brand_list.each.with_index(1) do |brand, index|
-            puts "#{index}. #{brand.name}"
+            puts "#{index}. #{brand}"
         end
         puts "\n"
     end
 
     def get_user_brand
-        chosen_brand = gets.strip
+        chosen_brand = gets.strip.to_i
         show_guitars(chosen_brand) if valid_input?(chosen_brand, @brand_list)
     end
 
@@ -40,8 +34,8 @@ binding.pry
     end
 
     def show_guitars(chosen_brand)
-        user_brand = @final_brand_list[chosen_brand - 1]    # this is a helper method for get #get_user_brand
-        puts "Here are all products by #{brand.name}!"
+        user_brand = @brand_list[(chosen_brand) - 1] # this is a helper method for get #get_user_brand
+        puts "\nHere are all products by #{user_brand}!\n\n"
     end
 
 

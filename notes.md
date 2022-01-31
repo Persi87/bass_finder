@@ -13,9 +13,6 @@ App flow
 Classes
     - CLI
     - Brand
-    - Guitar
+    - Model
     - Scraper
 
-    get 90 brands 
-    uniq to 19 brands
-    create new from sorted 

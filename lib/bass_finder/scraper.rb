@@ -1,6 +1,6 @@
 class BassFinder::Scraper
 
-    def self.scrape_brands
+    def self.scrape_product_tabs
 
         brand_list = []
 
@@ -9,15 +9,21 @@ class BassFinder::Scraper
         doc = Nokogiri::HTML(html)
 
         doc.css(".ident.grid").each do |bass_tab|
-            bass_brand = bass_tab.css(".manufacturer-img-box img").attribute("title").text
-            brand_list << bass_brand
+            model_name = bass_tab.css(".name.kor-product-link.js-tracking span").text
+            model_brand = bass_tab.css(".manufacturer-img-box img").attribute("title").text
+            model_url = bass_tab.css("a").attribute("href").value
+
+            BassFinder::Model.new(model_name, model_brand, model_url)
         end   
-
-        brand_list # brand_list contains all 90 brands inc duplicates
-
-        #   doc.css(".ident.grid a").attribute("href").value # this is for the individual guitar hopefully
-
           
+    end
+
+    def self.scrape_model_details(model)
+        html = URI.open(model.url)
+        doc = Nokogiri::HTML(html)
+
+        
+
     end
 
 end

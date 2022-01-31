@@ -1,18 +1,17 @@
 class BassFinder::Model
 
-    attr_accessor :name, :brand, :model_url
+    attr_accessor :name, :brand, :url
 
     @@all = []
 
-    def initialize(name, brand)
+    def initialize(name, brand, url)
         @name = name
         @brand = brand
-        @model_url = model_url
-        brand.models << self
+        @url = url
         save
     end
 
-    def self.save
+    def save
         @@all << self
     end
 
