@@ -22,8 +22,8 @@ class BassFinder::Scraper
         html = URI.open(model.url)
         doc = Nokogiri::HTML(html)
 
-        
-
+        doc.css("").each do |feature|
+            feature.css(".contentText li")
     end
 
 end

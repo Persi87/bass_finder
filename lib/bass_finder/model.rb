@@ -1,6 +1,6 @@
 class BassFinder::Model
 
-    attr_accessor :name, :brand, :url
+    attr_accessor :name, :brand, :url , :features
 
     @@all = []
 
@@ -8,6 +8,7 @@ class BassFinder::Model
         @name = name
         @brand = brand
         @url = url
+        @features = []
         save
     end
 
