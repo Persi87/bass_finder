@@ -1,13 +1,14 @@
 class BassFinder::Model
 
-    attr_accessor :name, :brand, :url , :features
+    attr_reader :name, :brand, :url, :price, :features
 
     @@all = []
 
-    def initialize(name, brand, url)
+    def initialize(name, brand, url, price)
         @name = name
         @brand = brand
         @url = url
+        @price = price
         @features = []
         save
     end

@@ -12,7 +12,7 @@ class BassFinder::CLI
     def get_and_create_brands
         
        BassFinder::Scraper.scrape_product_tabs
-
+       BassFinder::Scraper.scrape_model_details
     end
 
     def list_brands

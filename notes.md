@@ -12,7 +12,6 @@ App flow
 
 Classes
     - CLI
-    - Brand
     - Model
     - Scraper
 

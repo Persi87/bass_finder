@@ -12,18 +12,23 @@ class BassFinder::Scraper
             model_name = bass_tab.css(".name.kor-product-link.js-tracking span").text
             model_brand = bass_tab.css(".manufacturer-img-box img").attribute("title").text
             model_url = bass_tab.css("a").attribute("href").value
-
-            BassFinder::Model.new(model_name, model_brand, model_url)
+            model_price = bass_tab.css(".final.kor-product-sale-price-value").text.delete(" ")
+            
+            BassFinder::Model.new(model_name, model_brand, model_url, model_price)
         end   
           
     end
 
-    def self.scrape_model_details(model)
-        html = URI.open(model.url)
-        doc = Nokogiri::HTML(html)
+    def self.scrape_model_details
+        BassFinder::Model.all.each do |model|
+            html = URI.open(model.url)
+            doc = Nokogiri::HTML(html)
 
-        doc.css("").each do |feature|
-            feature.css(".contentText li")
+            doc.css(".row.feature-box li").each do |feature|
+                model.features << feature.text.delete("\n")
+            end
+            binding.pry
+        end
     end
 
 end
