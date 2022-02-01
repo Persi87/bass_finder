@@ -2,17 +2,20 @@ class BassFinder::CLI
 
     def call
         puts "\n ---> Welcome to the Bass Finder app <---\n\n"
-        get_and_create_brands
+        get_and_create_model
         # list_brands
         # get_user_brand
         
         #list guitar specs
     end
 
-    def get_and_create_brands
+    def get_and_create_model
         
-       BassFinder::Scraper.scrape_product_tabs
-       BassFinder::Scraper.scrape_model_details
+       BassFinder::Scraper.scrape_product_tabs.each do |bass_info|
+            binding.pry
+        BassFinder::Model.new(bass_info[0], bass_info[1], bass_info[2], bass_info[3])
+       end
+       
     end
 
     def list_brands

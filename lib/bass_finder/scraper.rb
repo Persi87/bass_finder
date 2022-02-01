@@ -2,7 +2,7 @@ class BassFinder::Scraper
 
     def self.scrape_product_tabs
 
-        brand_list = []
+        all_bass_array = []
 
         bass_page = "https://www.dv247.com/en_GB/GBP/Basses/4-String-Electric-Bass/cat-BASS-BASEB4?PageSize=90&SortingAttribute=Relevance-desc&SearchParameter"
         html = URI.open(bass_page)
@@ -14,8 +14,10 @@ class BassFinder::Scraper
             model_url = bass_tab.css("a").attribute("href").value
             model_price = bass_tab.css(".final.kor-product-sale-price-value").text.delete(" ")
             
-            BassFinder::Model.new(model_name, model_brand, model_url, model_price)
+            all_bass_array << [model_name, model_brand, model_url, model_price]
         end   
+
+        all_bass_array
           
     end
 
