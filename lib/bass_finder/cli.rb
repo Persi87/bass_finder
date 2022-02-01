@@ -2,23 +2,24 @@ class BassFinder::CLI
 
     def call
         puts "\n ---> Welcome to the Bass Finder app <---\n\n"
-        get_and_create_model
-        # list_brands
-        # get_user_brand
-        
-        #list guitar specs
+        get_and_create_models
+        create_and_show_list
+        get_user_model
+        #get_user_bass
+        #list_guitars_with_brand
+        # list guitar specs
+
     end
 
-    def get_and_create_model
-        
+    def get_and_create_models
        BassFinder::Scraper.scrape_product_tabs.each do |bass_info|
-            binding.pry
-        BassFinder::Model.new(bass_info[0], bass_info[1], bass_info[2], bass_info[3])
+            BassFinder::Model.new(bass_info[0], bass_info[1], bass_info[2], bass_info[3])
        end
-       
     end
 
-    def list_brands
+    def create_and_show_list
+        @brand_list = BassFinder::Model.all.collect {|model| model.brand}.uniq
+
         puts "Please choose a brand from the list, 1 - #{@brand_list.length}:\n\n"
                 
         @brand_list.each.with_index(1) do |brand, index|
@@ -38,7 +39,24 @@ class BassFinder::CLI
 
     def show_guitars(chosen_brand)
         user_brand = @brand_list[(chosen_brand) - 1] # this is a helper method for get #get_user_brand
-        puts "\nHere are all products by #{user_brand}!\n\n"
+        puts "\nHere are all #{user_brand} basses!\n\n"
+        
+        @model_list = []
+        
+        BassFinder::Model.all.each {|model| @model_list << model if user_brand == model.brand}
+
+        @model_list.each.with_index(1) {|model, index| puts "#{index}. #{model.name}"}
+
+        if @model_list == 1 
+            puts "\nPlease choose a bass from the list above to see more information:\n\n"
+        else
+            puts "\nPlease choose a bass from the list above to see more information, 1 - #{@model_list.length}:\n\n"
+        end
+    end
+
+    def get_user_model
+        chosen_model = gets.strip.to_i
+        show_guitars(chosen_brand) if valid_input?(chosen_brand, @brand_list)
     end
 
 
