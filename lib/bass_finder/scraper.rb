@@ -21,15 +21,17 @@ class BassFinder::Scraper
           
     end
 
-    def self.scrape_model_details
+    def self.scrape_model_details(user_model)
         BassFinder::Model.all.each do |model|
+            # binding.pry
+          if user_model == model 
             html = URI.open(model.url)
             doc = Nokogiri::HTML(html)
 
             doc.css(".row.feature-box li").each do |feature|
                 model.features << feature.text.delete("\n")
             end
-            binding.pry
+          end
         end
     end
 

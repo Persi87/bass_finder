@@ -4,11 +4,8 @@ class BassFinder::CLI
         puts "\n ---> Welcome to the Bass Finder app <---\n\n"
         get_and_create_models
         create_and_show_list
+        get_user_brand
         get_user_model
-        #get_user_bass
-        #list_guitars_with_brand
-        # list guitar specs
-
     end
 
     def get_and_create_models
@@ -18,9 +15,9 @@ class BassFinder::CLI
     end
 
     def create_and_show_list
-        @brand_list = BassFinder::Model.all.collect {|model| model.brand}.uniq
+        @brand_list = BassFinder::Model.all.collect {|model| model.brand}.uniq.sort
 
-        puts "Please choose a brand from the list, 1 - #{@brand_list.length}:\n\n"
+        puts "Please select the brand of bass you would like to look at, using the corresponding number from the list and press enter:\n\n"
                 
         @brand_list.each.with_index(1) do |brand, index|
             puts "#{index}. #{brand}"
@@ -29,8 +26,15 @@ class BassFinder::CLI
     end
 
     def get_user_brand
-        chosen_brand = gets.strip.to_i
-        show_guitars(chosen_brand) if valid_input?(chosen_brand, @brand_list)
+        chosen_brand = nil
+        #  until chosen_brand == "exit"
+         chosen_brand = gets.strip.to_i
+         if valid_input?(chosen_brand, @brand_list)
+            show_guitars(chosen_brand)
+         else
+            puts "\nPlease make a valid selection from the list, or type exit to leave the app:\n\n"
+         end
+        # end
     end
 
     def valid_input?(chosen_brand, data)                                #this is helper method for #get_user_brand
@@ -38,25 +42,39 @@ class BassFinder::CLI
     end
 
     def show_guitars(chosen_brand)
-        user_brand = @brand_list[(chosen_brand) - 1] # this is a helper method for get #get_user_brand
-        puts "\nHere are all #{user_brand} basses!\n\n"
+        user_brand = nil
+        # until user_brand == "exit"
+         user_brand = @brand_list[(chosen_brand) - 1] # this is a helper method for get #get_user_brand
+         puts "\nHere are all #{user_brand} basses!"
+         puts "\nPlease select the bass you would like to look at, using the corresponding number from the list and press enter:\n\n"
         
-        @model_list = []
+         @model_list = []
         
-        BassFinder::Model.all.each {|model| @model_list << model if user_brand == model.brand}
+         BassFinder::Model.all.each {|model| @model_list << model if user_brand == model.brand}
 
-        @model_list.each.with_index(1) {|model, index| puts "#{index}. #{model.name}"}
-
-        if @model_list == 1 
-            puts "\nPlease choose a bass from the list above to see more information:\n\n"
-        else
-            puts "\nPlease choose a bass from the list above to see more information, 1 - #{@model_list.length}:\n\n"
-        end
+         @model_list.each.with_index(1) {|model, index| puts "#{index}. #{model.name}"}
+         puts "\n"
     end
 
     def get_user_model
-        chosen_model = gets.strip.to_i
-        show_guitars(chosen_brand) if valid_input?(chosen_brand, @brand_list)
+        chosen_model = nil
+        # until chosen_model == "exit"
+         chosen_model = gets.strip.to_i
+         if valid_input?(chosen_model, @model_list)
+            get_and_show_info(chosen_model) 
+         else
+            puts "\nPlease make a valid selection from the list:\n\n"
+         end
+        # end
+    end
+
+    def get_and_show_info(chosen_model)
+        user_model = @model_list[(chosen_model) - 1]
+        BassFinder::Scraper.scrape_model_details(user_model)
+        puts "\nHere is information for #{user_model.name}\n\n"
+        puts "Price: #{user_model.price}"
+        puts user_model.features
+        puts "\n"
     end
 
 
