@@ -4,7 +4,7 @@ class BassFinder::Scraper
 
         all_bass_array = []
 
-        bass_page = "https://www.dv247.com/en_GB/GBP/Basses/4-String-Electric-Bass/cat-BASS-BASEB4?PageSize=90&SortingAttribute=Relevance-desc&SearchParameter"
+        bass_page = "https://www.dv247.com/en_GB/GBP/Basses/4-String-Electric-Bass/cat-BASS-BASEB4?PageSize=30&SortingAttribute=Relevance-desc&SearchParameter"
         html = URI.open(bass_page)
         doc = Nokogiri::HTML(html)
 
@@ -23,7 +23,6 @@ class BassFinder::Scraper
 
     def self.scrape_model_details(user_model)
         BassFinder::Model.all.each do |model|
-            # binding.pry
           if user_model == model 
             html = URI.open(model.url)
             doc = Nokogiri::HTML(html)
