@@ -1,13 +1,12 @@
 App flow
     - Greet User
-    - Scrape brands from website
-    - List brands with index
-    - User sees brands
+    - App starts and scrapes webpage and creates guitar objects
+    - User sees list of basses
     - Ask user to pick from the list
-    - Show users all guitars with the selected brand
-    - User picks guitar to see 
-    - Show user details of the selected guitar
-    - Ask user if they would like to select another guitar, brand, or exit
+    - User picks bass to see 
+    - Scrape details of selected bass
+    - Show user details of the selected bass
+    - Ask user if they would like to select another guitar, or exit
     
 
 Classes
