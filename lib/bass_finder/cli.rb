@@ -52,10 +52,14 @@ class BassFinder::CLI
     def get_and_show_info(chosen_bass)
         user_bass = @bass_list[(chosen_bass.to_i) - 1]
         show_bass = BassFinder::Model.all.find {|model| user_bass == model.name}
-        BassFinder::Scraper.scrape_model_details(show_bass)
+        if show_bass.features == []
+         BassFinder::Scraper.scrape_model_details(show_bass)
+        end 
+          
         puts "\nHere are the specifications for #{show_bass.name}\n\n"
         puts "Price: #{show_bass.price}"
         puts show_bass.features
+
     end
 
     
