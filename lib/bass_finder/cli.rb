@@ -1,26 +1,25 @@
 class BassFinder::CLI
 
     def call
-        puts "\n ---> Welcome to the Bass Finder app <---\n\n"
+        puts "\n ---> Welcome to the BASS FINDER app <---\n\n"
         get_and_create_models
         user_input = nil
         until user_input == "e"
-        puts "\nPlease select the bass you would like to look at using the corresponding number from the list:\n\n"
-        show_bass_list
-        puts "\n"
-        get_user_bass
-            puts "\nWould you like to look at another bass?  If yes, type 'y', or type 'e' to exit the app:\n\n"
-        user_input = gets.strip
+         puts "Please select the bass you would like to look at using the corresponding number from the list:\n\n"
+         show_bass_list
+         puts "\n"
+         get_user_bass
+         puts "\nWould you like to look at another bass?  If yes, type 'y' or type 'e' to exit the app:\n\n"
+         user_input = gets.strip
+         puts "\n"
          if user_input == "y"
-            
+
          elsif user_input == "e"
 
-         else
-            puts "Please make a valid selection:"
          end
         end
-        puts "\n---> Thank you for using the Bass Finder app <---\n\n"
-        puts "          ---> Goodbye <---\n\n"
+        puts "---> Thank you for using the BASS FINDER app! <---\n\n"
+        puts "              ---> GOODBYE <---\n\n"
     end
 
 
@@ -59,7 +58,6 @@ class BassFinder::CLI
         puts "\nHere are the specifications for #{show_bass.name}\n\n"
         puts "Price: #{show_bass.price}"
         puts show_bass.features
-
     end
 
     
